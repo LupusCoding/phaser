@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
         <script type="text/javascript" src="res/phaser.min.js"></script>
+        <script type="text/javascript" src="res/score.js"></script>
         <script type="text/javascript" src="res/map.js"></script>
         <script type="text/javascript" src="res/actor.js"></script>
         <script type="text/javascript" src="res/rl.js"></script>
@@ -14,10 +15,15 @@
     <body>
         <h1>Roguelike Phaser Game</h1>
 
+        <div class="row">
+            <div class="col50">Insert your Name</div>
+            <div class="col50"><input type="text" id="name" /></div>
+        </div>
         <div id="info">
             <span id="level" class="icon-compass2"></span>
             <span id="HP" class="icon-heart"></span>
             <span id="enemies" class="icon-info"></span>
+            <span id="score" class="icon-star-empty"></span>
         </div>
         <div id="game"></div>
     </body>

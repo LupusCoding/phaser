@@ -23,6 +23,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    padding-right: 10px;
+    padding-left: 5px;
+}
 .icon-feed:before {
   content: "\e91d";
 }
@@ -69,7 +73,18 @@
   content: "\ea53";
 }
 
-
+.row {
+    display: table;
+    width: 99%;
+}
+.col50 {
+    display: table-cell;
+    width: 48%;
+    padding: 0 1%;
+}
+.bordered {
+    border: 1px solid #000;
+}
 
 #info {
     position: relative;
@@ -80,20 +95,17 @@
     font-size: 16px;
     padding: 10px 0;
 }
-
-    #info span {
-        position: relative;
-        display: table-cell;
-        width: 33%;
-        padding: 0 5px;
-    }
-
+#info span {
+    position: relative;
+    display: table-cell;
+    width: 25%;
+    padding: 0 5px;
+}
 #game {
     background-color: #333;
     width: 99%;
     border: 1px solid #333;
 }
-
 #game > canvas {
     margin-left: auto;
     margin-right: auto;

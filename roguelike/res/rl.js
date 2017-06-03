@@ -12,12 +12,16 @@ var asciidisplay;
 var player;
 var actorList;
 var livingEnemies;
+var score;
+var Score;
 
 var playerhp, playermp;
 var enemyhp, enemymp;
 
 var enemycounter;
 var actlevel;
+
+var gameover = 0;
 
 var game = new Phaser.Game(COLS * FONT, ROWS * FONT, Phaser.CANVAS, 'game', { preload: preload, create: create });
 
@@ -29,24 +33,31 @@ function preload() {
 }
 
 function create() {
-	game.input.keyboard.addCallbacks(null, null, onKeyUp);
+    game.input.keyboard.addCallbacks(null, null, onKeyUp);
+
+    Score = new Score();
+
+	playerhp = 5;
+	playermp = 3;
+	enemyhp = 1;
+    enemymp = 1;
+
+    actlevel = 0;
+    score = 0;
+
+    startlevel();
+}
+
+function startlevel() {
+    actlevel++;
 
     map = new Map(ROWS, COLS);
     map.init();
     map.createCells();
 
-	playerhp = 3;
-	playermp = 3;
-	enemyhp = 1;
-    enemymp = 1;
+    initActors();
 
- //   actlevel = 1;
-
-	initActors();
-
-    //map.draw();
-	drawActors();
- //   //enemycounter = game.add.text(1, 1, 'living enemies: '+livingEnemies, { fill: '#e22', align: 'left' });
+    drawActors();
     showInfo();
 }
 
@@ -54,6 +65,7 @@ function showInfo() {
     document.getElementById('level').innerHTML = 'level: ' + actlevel;
     document.getElementById('HP').innerHTML = 'HP: ' + player.hp;
     document.getElementById('enemies').innerHTML = 'Enemies on Map: ' + livingEnemies;
+    document.getElementById('score').innerHTML = 'Score: ' + score;
 }
 
 function randomInt(max) {
@@ -121,11 +133,17 @@ function moveTo(actor, dir) {
 			actorList[actorList.indexOf(victim)] = null;
 			if(victim != player) {
                 livingEnemies--;
+                score++;
                 map.updateCell(victim.x, victim.y, null, '#fff');
 				if(livingEnemies == 0) {
-					var victory = game.add.text(game.world.centerX, game.world.centerY, 'Victory!\nCtrl+r to restart', { fill: '#2e2', align: 'center' });
-					victory.anchor.setTo(0.5,0.5);
-				}
+					//var victory = game.add.text(game.world.centerX, game.world.centerY, 'Victory!\nCtrl+r to restart', { fill: '#2e2', align: 'center' });
+					//victory.anchor.setTo(0.5,0.5);
+                    startlevel();
+                //} else {
+                    //if (Math.random() < 0.2) {
+                    //    map.updateCell(victim.x, victim.y, 'aid', '#fff');
+                    //}
+                }
 			}
 		}
 	} else {
@@ -178,14 +196,33 @@ function onKeyUp(event) {
     	}
     }
     drawActors();
-	//updateEcount();
     showInfo();
 }
 
 function aiAct(actor) {
     moveTo(actor, actor.aiAct(player));
-	if(player.hp < 1) {
-		var gameOver = game.add.text(game.world.centerX, game.world.centerY, 'Game Over\nCtrl+r to restart', { fill: '#e22', align: 'center' });
-		gameOver.anchor.setTo(0.5,0.5);
+    if (player.hp < 1 && gameover != 1) {
+        gameOver();
 	}
+}
+
+function gameOver() {
+    gameover = 1;
+    var name = document.getElementById('name').value;
+    if (name === '') {
+        name = 'Anonymous';
+    }
+    var highscores = '';
+    if (score > Score.getHighscore()) {
+        highscores += '\nNEW HIGHSCORE! ' + score + '\n\n';
+    }
+    if (name != '' && name != null) {
+        Score.setScore(name, score);
+    }
+    var scores = Score.getHighest();
+    for (var s = 0; s < scores.length; s++) {
+        highscores += (s+1) + ' Place: ' + scores[s].score + ' Points - ' + name + '\n';
+    }
+    var gameOver = game.add.text(game.world.centerX, game.world.centerY, 'GAME OVER\nYour Score: ' + score + '\n' + highscores +'\nCtrl+r to restart', { fill: '#e22', align: 'center' });
+    gameOver.anchor.setTo(0.5, 0.5);
 }
