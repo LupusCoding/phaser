@@ -4,43 +4,21 @@
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Phaser Game</title>
 
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
         <script type="text/javascript" src="res/phaser.min.js"></script>
+        <script type="text/javascript" src="res/map.js"></script>
+        <script type="text/javascript" src="res/actor.js"></script>
         <script type="text/javascript" src="res/rl.js"></script>
     </head>
     <body>
         <h1>Roguelike Phaser Game</h1>
 
         <div id="info">
-            <span id="level"></span>
-            <span id="HP"></span>
-            <span id="enemies"></span>
+            <span id="level" class="icon-compass2"></span>
+            <span id="HP" class="icon-heart"></span>
+            <span id="enemies" class="icon-info"></span>
         </div>
         <div id="game"></div>
-        <style type="text/css">
-            #info {
-                position: relative;
-                display: table;
-                width: 99%;
-                border: 1px solid #000;
-                font-weight: bold;
-                font-size: 16px;
-                padding: 10px 0;
-            }
-            #info span {
-                position: relative;
-                display: table-cell;
-                width: 33%;
-                padding: 0 5px;
-            }
-            #game {
-                background-color: #333;
-                width: 99%;
-                border: 1px solid #333;
-            }
-            #game > canvas {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        </style>
     </body>
 </html>

@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?mlwaai');
+  src:  url('../fonts/icomoon.eot?mlwaai#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?mlwaai') format('truetype'),
+    url('../fonts/icomoon.woff?mlwaai') format('woff'),
+    url('../fonts/icomoon.svg?mlwaai#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-feed:before {
+  content: "\e91d";
+}
+.icon-compass2:before {
+  content: "\e94a";
+}
+.icon-spinner9:before {
+  content: "\e982";
+}
+.icon-aid-kit:before {
+  content: "\e998";
+}
+.icon-bug:before {
+  content: "\e999";
+}
+.icon-gift:before {
+  content: "\e99f";
+}
+.icon-menu:before {
+  content: "\e9bd";
+}
+.icon-star-empty:before {
+  content: "\e9d7";
+}
+.icon-star-half:before {
+  content: "\e9d8";
+}
+.icon-star-full:before {
+  content: "\e9d9";
+}
+.icon-heart:before {
+  content: "\e9da";
+}
+.icon-happy:before {
+  content: "\e9df";
+}
+.icon-question:before {
+  content: "\ea09";
+}
+.icon-info:before {
+  content: "\ea0c";
+}
+.icon-checkbox-unchecked:before {
+  content: "\ea53";
+}
+
+
+
+#info {
+    position: relative;
+    display: table;
+    width: 99%;
+    border: 1px solid #000;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+    #info span {
+        position: relative;
+        display: table-cell;
+        width: 33%;
+        padding: 0 5px;
+    }
+
+#game {
+    background-color: #333;
+    width: 99%;
+    border: 1px solid #333;
+}
+
+#game > canvas {
+    margin-left: auto;
+    margin-right: auto;
+}
